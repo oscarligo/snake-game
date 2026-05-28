@@ -1,4 +1,4 @@
-import React from 'react'
+import './Game.css'
 
 export default function Board  ({ snake, food, gridSize })  {
     const cells = Array.from({ length: gridSize * gridSize })
@@ -15,7 +15,7 @@ export default function Board  ({ snake, food, gridSize })  {
             const isFood = food.x === x && food.y === y
 
             // Styles based on cell type
-            let cellClass = "game-cell";
+            let cellClass = "game-cell"
             if (isSnake) cellClass += " snake-cell"
             if (isFood) cellClass += " food-cell"
 
@@ -24,10 +24,10 @@ export default function Board  ({ snake, food, gridSize })  {
                 key={index}
                 className={cellClass}
                 />
-            );
+            )
             })}
         </div>
         </div>
-    );
+    )
     };
 
