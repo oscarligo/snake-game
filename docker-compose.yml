@@ -1,0 +1,9 @@
+services:
+  snake:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: snake-game
+    restart: always
+    ports:
+      - "3002:3000" 
