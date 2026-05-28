@@ -103,7 +103,7 @@ export default function App() {
 
         return newSnake
       })
-    }, 150) // Game speed (150ms per move)
+    }, 70) // Game speed (70ms per move)
 
     return () => clearInterval(gameLoop)
   }, [direction, food, isGameOver])
@@ -111,7 +111,7 @@ export default function App() {
   return (
     <div className="app-container">
       <header className="game-header">
-        <h1>React Snake Game</h1>
+        <h1>Snake Game</h1>
       </header>
       
       <main className="game-main">
