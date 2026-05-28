@@ -1,0 +1,59 @@
+.game-board-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.game-board {
+  display: grid;
+  /* Reemplaza el 20 por tu GRID_SIZE si decides cambiarlo */
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  width: 400px;
+  height: 400px;
+  background-color: #222;
+  border: 4px solid #333;
+}
+
+.game-cell {
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.snake-cell {
+  background-color: #4CAF50;
+  border-radius: 4px;
+}
+
+.food-cell {
+  background-color: #FF5722;
+  border-radius: 50%;
+}
+
+.scoreboard {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.game-over-message {
+  color: #FF5722;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.game-instructions {
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+}
