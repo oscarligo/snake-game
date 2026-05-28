@@ -3,6 +3,7 @@ import { GRID_SIZE, INITIAL_SNAKE, INITIAL_DIRECTION, INITIAL_FOOD } from './uti
 import Board from './components/Board'
 import ScoreBoard from './components/ScoreBoard'
 import GameControls from './components/GameControls'
+import {LEFT, RIGHT, UP, DOWN} from './utils/constants'
 import './App.css'
 
 export default function App() {
@@ -11,6 +12,19 @@ export default function App() {
   const [direction, setDirection] = useState(INITIAL_DIRECTION)
   const [isGameOver, setIsGameOver] = useState(false)
   const [score, setScore] = useState(0) 
+
+  const updateDirection = (nextDirection) => {
+    setDirection((currentDirection) => {
+      if (
+        currentDirection.x === -nextDirection.x &&
+        currentDirection.y === -nextDirection.y
+      ) {
+        return currentDirection
+      }
+
+      return nextDirection
+    })
+  }
 
   // Generate new food in a random position that is not occupied by the snake
   const generateNewFood = (currentSnake) => {
@@ -29,9 +43,9 @@ export default function App() {
   }
   // Resets the game to its initial state
   const resetGame = () => {
-    setSnake(INITIAL_SNAKE)
+    setSnake([...INITIAL_SNAKE])
     setDirection(INITIAL_DIRECTION)
-    setFood(INITIAL_FOOD)
+    setFood({ ...INITIAL_FOOD })
     setScore(0)
     setIsGameOver(false)
   }
@@ -40,16 +54,16 @@ export default function App() {
     const handleKeyDown = (e) => {
       switch (e.key) {
         case 'ArrowUp':
-          if (direction.y !== 1) setDirection({ x: 0, y: -1 })
+          updateDirection(UP)
           break
         case 'ArrowDown':
-          if (direction.y !== -1) setDirection({ x: 0, y: 1 })
+          updateDirection(DOWN)
           break
         case 'ArrowLeft':
-          if (direction.x !== 1) setDirection({ x: -1, y: 0 })
+          updateDirection(LEFT)
           break
         case 'ArrowRight':
-          if (direction.x !== -1) setDirection({ x: 1, y: 0 })
+          updateDirection(RIGHT)
           break
         default:
           break
@@ -58,7 +72,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [direction])
+  }, [])
   // Main game loop
   useEffect(() => {
     if (isGameOver) return
@@ -126,6 +140,7 @@ export default function App() {
         <GameControls 
           isGameOver={isGameOver} 
           onReset={resetGame} 
+          onDirectionChange={updateDirection}
         />
       </main>
     </div>

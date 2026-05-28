@@ -1,18 +1,23 @@
 .game-board-container {
   display: flex;
   justify-content: center;
-  margin: 20px auto;
+  margin: clamp(12px, 3vw, 20px) auto;
   background-color: #111;
-  padding: 12px;
+  padding: clamp(8px, 2vw, 12px);
   border: 4px solid #444;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
-  width: 400px;
-  height: 400px;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  grid-template-rows: repeat(20, minmax(0, 1fr));
+  width: min(92vw, 400px);
+  aspect-ratio: 1;
+  height: auto;
+  max-width: 100%;
   background-color: #1a1a1a; /* Fondo un poco más oscuro */
 }
 
@@ -36,7 +41,7 @@
 
 .scoreboard {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
   margin-bottom: 10px;
   font-family: 'Monocraft';
   text-transform: uppercase;
@@ -48,6 +53,12 @@
   margin-top: 10px;
   letter-spacing: 2px;
   font-family: 'Monocraft';
+}
+
+.game-over-message--help {
+  color: #f0f6fc;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
 }
 
 .reset-button {
@@ -62,6 +73,7 @@
   border-radius: 0px; 
   box-shadow: 4px 4px 0px #3681a1;
   cursor: pointer;
+  min-height: 44px;
 }
 
 .reset-button:active {
@@ -75,9 +87,111 @@
     top: -2px;
 }
 
+.reset-button--secondary {
+  min-width: 120px;
+}
+
+.game-controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.direction-pad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 86px));
+  grid-template-rows: repeat(3, minmax(0, 86px));
+  gap: 8px;
+  align-items: center;
+  justify-items: center;
+}
+
+.direction-button,
+.pad-spacer {
+  width: 86px;
+  height: 86px;
+  box-sizing: border-box;
+}
+
+.pad-spacer {
+  visibility: hidden;
+}
+
+.direction-button {
+  border: 3px solid #000;
+  background-color: #55ccff;
+  color: #000;
+  font-family: 'Monocraft';
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #3681a1;
+  touch-action: manipulation;
+}
+
+.direction-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #3681a1;
+}
+
 .game-instructions {
   color: #888;
   font-size: 0.9rem;
   text-align: center;
   font-family: 'Monocraft';
+}
+
+@media (max-width: 640px) {
+  .game-board-container {
+    border-width: 3px;
+  }
+
+  .direction-pad {
+    grid-template-columns: repeat(3, minmax(0, 56px));
+    grid-template-rows: repeat(3, minmax(0, 56px));
+    gap: 6px;
+  }
+
+  .direction-button,
+  .pad-spacer {
+    width: 56px;
+    height: 56px;
+  }
+
+  .reset-button--secondary {
+    min-width: 104px;
+  }
+}
+
+@media (max-width: 420px) {
+  .scoreboard {
+    font-size: 1rem;
+  }
+
+  .game-board {
+    width: 60vw;
+    
+  }
+
+  .game-instructions,
+  .game-over-message--help {
+    font-size: 0.8rem;
+  }
+
+  .direction-pad {
+    grid-template-columns: repeat(3, minmax(0, 70px));
+    grid-template-rows: repeat(3, minmax(0, 70px));
+  }
+
+  .direction-button,
+  .pad-spacer {
+    width: 70px;
+    height: 70px;
+  }
+
+  .direction-button {
+    font-size: 1rem;
+  }
 }
