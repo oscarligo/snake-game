@@ -9,6 +9,8 @@ export default function GameControls ({ isGameOver, onReset, onDirectionChange }
                         Reiniciar
                 </button>
 
+                {!isGameOver && (
+
                 <div className="direction-pad">
                 <div className="pad-spacer" />
                     <button className="direction-button" onClick={() => onDirectionChange(UP)}>▲</button>
@@ -22,6 +24,7 @@ export default function GameControls ({ isGameOver, onReset, onDirectionChange }
                     <button className="direction-button" onClick={() => onDirectionChange(DOWN)}>▼</button>
                     <div className="pad-spacer" />
                 </div>
+                )}
 
                 {isGameOver && (
                     <p className="game-over-message game-over-message--help">

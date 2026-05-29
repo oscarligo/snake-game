@@ -96,14 +96,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
 }
 
 .direction-pad {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 86px));
   grid-template-rows: repeat(3, minmax(0, 86px));
-  gap: 8px;
+  gap: 6px;
   align-items: center;
   justify-items: center;
 }
@@ -181,14 +181,20 @@
   }
 
   .direction-pad {
-    grid-template-columns: repeat(3, minmax(0, 70px));
-    grid-template-rows: repeat(3, minmax(0, 70px));
+    grid-template-columns: repeat(3, minmax(0, 48px));
+    grid-template-rows: repeat(3, minmax(0, 48px));
+  }
+
+  .reset-button {
+    padding: 8px 12px;
+
+    font-size: 0.7rem;
   }
 
   .direction-button,
   .pad-spacer {
-    width: 70px;
-    height: 70px;
+    width: 48px;
+    height: 48px;
   }
 
   .direction-button {
